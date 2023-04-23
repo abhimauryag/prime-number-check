@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Prime Number Checker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+      }
+
+      #container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        font-size: 36px;
+        text-align: center;
+        margin-top: 0;
+      }
+
+      p {
+        font-size: 20px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+      }
+
+      input[type="number"] {
+        font-size: 20px;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 400px;
+        margin-right: 10px;
+      }
+
+      button {
+        font-size: 20px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #3e8e41;
+      }
+
+      .alert {
+        font-size: 20px;
+        margin-top: 20px;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      }
+
+      .alert-success {
+        background-color: #4CAF50;
+        color: white;
+      }
+
+      .alert-warning {
+        background-color: #ff9800;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <h1>Prime Number Checker</h1>
+      <p>Enter a number to check if it's prime:</p>
+      <div>
+        <input type="number" id="numberInput" placeholder="Enter a number...">
+        <button onclick="checkPrime()">Check</button>
+      </div>
+      <div id="alertContainer"></div>
+      <script>
+        function checkPrime() {
+          var num = document.getElementById("numberInput").value;
+          var factors = [];
+          var isPrime = true;
+
+          for (var i = 2; i < num; i++) {
+            if (num % i === 0) {
+              factors.push(i);
+              isPrime = false;
+            }
+          }
+
+          var alertContainer = document.getElementById("alertContainer");
+
+          if (isPrime) {
+            alertContainer.innerHTML = '<div class="alert alert-success">' + num + ' is a prime number!</div>';
+          } else {
+            var factorsString = factors.join(", ");
+            alertContainer.innerHTML = '<div class="alert alert-warning">' + num + ' is not a prime number. The factors are: ' + factorsString + '</div>';
+          }
+        }
+      </script>
+    </div>
+  </body>
+</html>
